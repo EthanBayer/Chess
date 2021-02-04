@@ -15,6 +15,8 @@ class ChessBoard : public Board
         virtual void initialize();
         Tile getTile();
         void setTile(Tile t, Piece p);
+        void print();
+        void printTiles();
 };
 
 #endif
