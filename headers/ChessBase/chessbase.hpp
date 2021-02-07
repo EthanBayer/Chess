@@ -27,7 +27,7 @@ class ChessBase
         void setRep(char r);
         void setName(std::string n);
         void setPieceStrat(ChessPieceStrategy* ps);
-        virtual void print();
+        //void print();
 };
 
 #endif

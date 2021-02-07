@@ -47,7 +47,7 @@ void ChessBase::setRep(char r)
     representation = r;
 }
 
-void ChessBase::setName(std::string n)
+void ChessBase::setName(std::string name)
 {
     this->name = name;
 }
