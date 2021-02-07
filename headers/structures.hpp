@@ -8,7 +8,7 @@ class ChessBase;
 struct Tile
 {
     char color;
-    Chessbase* usedPiece;
+    ChessBase* usedPiece;
 };
 
 #endif

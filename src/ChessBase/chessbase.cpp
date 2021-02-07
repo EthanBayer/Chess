@@ -1,5 +1,5 @@
 
-#include "../../header/ChessBase/chessbase.hpp"
+#include "../../headers/ChessBase/chessbase.hpp"
 
 ChessBase::ChessBase()
 {

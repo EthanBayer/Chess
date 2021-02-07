@@ -6,6 +6,7 @@
 #include "../structures.hpp"
 
 class ChessPieceStrategy;
+struct Tile;
 
 class ChessBase
 {
@@ -26,7 +27,7 @@ class ChessBase
         void setRep(char r);
         void setName(std::string n);
         void setPieceStrat(ChessPieceStrategy* ps);
-        virtual void print() = 0;
+        virtual void print();
 };
 
 #endif

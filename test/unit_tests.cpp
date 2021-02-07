@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-//#include "tests/tileTests.hpp"
+#include "testFiles/chessbasetests.hpp"
 
 int main(int argc, char **argv)
 {
