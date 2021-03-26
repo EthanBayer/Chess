@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "testFile/piecetests.hpp"
+#include "testFile/tiletests.hpp"
 
 int main(int argc, char **argv)
 {

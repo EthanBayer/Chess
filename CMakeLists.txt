@@ -9,6 +9,7 @@ SET(CMAKE_CXX_STANDARD 11)
 ADD_EXECUTABLE( unit_tests
     tests/unit_tests.cpp
     src/piece.cpp
+    src/tile.cpp
 )
 
 TARGET_LINK_LIBRARIES(unit_tests gtest)
