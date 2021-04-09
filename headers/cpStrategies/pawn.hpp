@@ -3,7 +3,7 @@
 
 #include "chesspiecestrategy.hpp"
 
-class Pawn : public ChessPieceStrategy
+class PawnC : public ChessPieceStrategy
 {
     public:
         int movement(int origRow, int origCol, int newRow, int newCol);

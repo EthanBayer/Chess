@@ -5,6 +5,7 @@
 #include "tile.hpp"
 #include <map>
 #include <iterator>
+#include "cpStrategies/chesspiecestrategy.hpp"
 
 class ChessPieceStrategy;
 
@@ -14,7 +15,7 @@ class ChessBoard
         std::string name;
         Tile board[8][8];
         std::map<Movements, ChessPieceStrategy*> PieceMovements;
-
+        Piece pieces[12];
     
     public:
         ChessBoard();
@@ -23,6 +24,7 @@ class ChessBoard
         std::string getName();
         void initializeBoard();
         void printBoard();
+        void printTiles();
         void move(int origRow, int origCol, int moveRow, int moveCol);
 };
 
