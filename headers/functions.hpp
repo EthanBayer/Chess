@@ -16,7 +16,7 @@ Position getPosition(int pos)
     }
     else
     {
-        col = pos - (row * 10);
+        col = pos - (row * 10) - 1;
     }
     
     choice.col = col;
