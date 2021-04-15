@@ -15,7 +15,9 @@ class ChessBoard
         std::string name;
         Tile board[8][8];
         std::map<Movements, ChessPieceStrategy*> PieceMovements;
-        Piece pieces[12];
+        Piece pieces[13];
+        void setMap();
+        void setPieces();
     
     public:
         ChessBoard();

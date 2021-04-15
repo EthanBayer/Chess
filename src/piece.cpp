@@ -3,7 +3,7 @@
 
 Piece::Piece()
 {
-    symbol = '0';
+    symbol = ' ';
     name = "Empty";
     m = None;
 }
