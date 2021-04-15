@@ -6,11 +6,18 @@
 #include "../headers/cpStrategies/knight.hpp"
 #include "../headers/cpStrategies/queen.hpp"
 #include "../headers/cpStrategies/king.hpp"
+#include "../headers/cpStrategies/none.hpp"
 #include <utility>
 
 void ChessBoard::setMap()
 {
     std::pair<Movements, ChessPieceStrategy*> p1;
+
+    NoneC* z;
+    ChessPieceStrategy* none = z;
+    p1.first = None;
+    p1.second = none;
+    PieceMovements.insert(p1);
 
     PawnC* p;
     ChessPieceStrategy* pawn = p;
@@ -152,21 +159,11 @@ void ChessBoard::initializeBoard()
 
     //Sets the 4 X 8 series of blank spaces
     int count2 = 1;
-    int modEquals;
-    for (int i = 2; i < 6; i++)
+    for (int i = 2; i < 6; i+=2)
     {
-        if (i == 3 || i == 5)
-        {
-            modEquals = 2;
-        }
-        else
-        {
-            modEquals = 1;
-        }
-
         for(int j = 0; j < 8; j++)
         {
-            if (count2 % 2 == modEquals)
+            if (count2 % 2 == 1)
             {
                 board[i][j] = Tile(pieces[0], 'W');
                 count2 = 2;
@@ -178,6 +175,23 @@ void ChessBoard::initializeBoard()
             }
         }
     }
+    count2 = 1;
+    for (int i = 3; i < 6; i+=2)
+    {
+        for(int j = 0; j < 8; j++)
+        {
+            if (count2 % 2 == 1)
+            {
+                board[i][j] = Tile(pieces[0], 'B');
+                count2 = 2;
+            }
+            else
+            {
+                board[i][j] = Tile(pieces[0], 'W');
+                count2 = 1;
+            }
+        }
+    }
 
     //Sets the white pawns
     count = 1;
@@ -185,12 +199,12 @@ void ChessBoard::initializeBoard()
     {
         if(count % 2 == 1)
         {
-            board[1][i] = Tile(pieces[1], 'W');
+            board[6][i] = Tile(pieces[1], 'W');
             count = 2;
         }
         else
         {
-            board[1][i] = Tile(pieces[1], 'B');
+            board[6][i] = Tile(pieces[1], 'B');
             count = 1;
         }
     }
@@ -213,7 +227,7 @@ void ChessBoard::printBoard()
     {
         for(int j = 0; j < 8; j++)
         {
-            std::cout << board[i][j].getPiece().getSymbol() << " " << std::endl;
+            std::cout << board[i][j].getPiece().getSymbol() << " ";
         }
         std::cout << std::endl;
     }
@@ -226,7 +240,7 @@ void ChessBoard::printTiles()
     {
         for(int j = 0; j < 8; j++)
         {
-            std::cout << board[i][j].getColor() << " " << std::endl;
+            std::cout << board[i][j].getColor() << " ";
         }
         std::cout << std::endl;
     }

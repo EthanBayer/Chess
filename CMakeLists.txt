@@ -18,6 +18,9 @@ ADD_EXECUTABLE( numbersplitter_tests
 
 ADD_EXECUTABLE( chessboard_tests
     tests/testFile/chessboard.cpp
+    src/chessboard.cpp
+    src/piece.cpp
+    src/tile.cpp
 )
 
 TARGET_LINK_LIBRARIES(unit_tests gtest)
