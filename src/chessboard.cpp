@@ -80,6 +80,36 @@ ChessBoard::ChessBoard(std::string name)
     setPieces();
 }
 
+int ChessBoard::getPiecesSize()
+{
+    return sizeof(pieces)/sizeof(pieces[0]);
+}
+
+int ChessBoard::getMapSize()
+{
+    return PieceMovements.size();
+}
+
+void ChessBoard::printPieces()
+{
+    std::cout << std::endl << "Pieces" << std::endl;
+    for (int i = 0; i < 13; i++)
+    {
+        std::cout << pieces[i].getSymbol() << " ";
+    }
+    std::cout << std::endl;
+}
+
+void ChessBoard::printMap()
+{
+    std::cout << std::endl << "Map Values" << std::endl;
+    for(auto i : PieceMovements)
+    {
+        std::cout << i.first << std::endl;
+    }
+    std::cout << std::endl;
+}
+
 void ChessBoard::setName(std::string name)
 {
     this->name = name;

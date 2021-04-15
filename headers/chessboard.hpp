@@ -5,6 +5,7 @@
 #include "tile.hpp"
 #include <map>
 #include <iterator>
+#include <array>
 #include "cpStrategies/chesspiecestrategy.hpp"
 
 class ChessPieceStrategy;
@@ -22,6 +23,10 @@ class ChessBoard
     public:
         ChessBoard();
         ChessBoard(std::string name);
+        int getPiecesSize();
+        int getMapSize();
+        void printPieces();
+        void printMap();
         void setName(std::string name);
         std::string getName();
         void initializeBoard();
