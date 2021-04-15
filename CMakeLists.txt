@@ -16,5 +16,9 @@ ADD_EXECUTABLE( numbersplitter_tests
     tests/testFile/numbersplittertest.cpp
 )
 
+ADD_EXECUTABLE( chessboard_tests
+    tests/testFile/chessboard.cpp
+)
+
 TARGET_LINK_LIBRARIES(unit_tests gtest)
 TARGET_COMPILE_DEFINITIONS(unit_tests PRIVATE gtest_disable_pthreads=ON)

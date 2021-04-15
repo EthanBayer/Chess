@@ -71,6 +71,7 @@ ChessBoard::ChessBoard()
     name = "Chess Board";
     setMap();
     setPieces();
+    initializeBoard();
 }
 
 ChessBoard::ChessBoard(std::string name)
@@ -78,6 +79,7 @@ ChessBoard::ChessBoard(std::string name)
     this->name = name;
     setMap();
     setPieces();
+    initializeBoard();
 }
 
 int ChessBoard::getPiecesSize()
