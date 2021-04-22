@@ -12,3 +12,6 @@ The `ChessBoard` class will have a string variable for the board's name, a 8 X 8
 
 ## ChessPieceStrategy Classes
 These classes use the Strategy Pattern with a base `ChessPieceStrategy` class which has the movement function which all of its children will utilize in different ways and a `ChessBoard` object so that the board of `Tile` objects can be accessed by its children. There will be Seven children classes to the `ChessPieceStrategy` class, including the `None`, `Pawn`, `Rook`, `Knight`, `Bishop`, `Queen`, and `King` classes.
+
+## Basic Template for Class Structure
+![](Images/Template.PNG)
