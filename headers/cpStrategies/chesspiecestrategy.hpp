@@ -10,7 +10,7 @@ class ChessPieceStrategy
         ChessBoard* cb;
 
     public:
-        virtual int movement(int origRow, int origCol, int newRow, int newCol) = 0;
+        virtual int movement(int turn, int origRow, int origCol, int newRow, int newCol) = 0;
 
 };
 

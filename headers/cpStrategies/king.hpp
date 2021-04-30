@@ -6,7 +6,7 @@
 class KingC : public ChessPieceStrategy
 {
     public:
-        int movement(int origRow, int origCol, int newRow, int newCol);
+        int movement(int turn, int origRow, int origCol, int newRow, int newCol);
 };
 
 #endif
