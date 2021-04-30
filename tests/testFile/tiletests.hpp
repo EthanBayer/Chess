@@ -13,7 +13,7 @@ TEST (TileTests, ConstrcutorTests)
     EXPECT_EQ (test->getPiece().getName(), "Empty");
     EXPECT_EQ (test->getPiece().getMovement(), None); 
 
-    Piece p1 = Piece('T', "Rook", Rook);
+    Piece p1 = Piece('T', "Rook", Rook, 0);
     test = new Tile(p1, 'W');
 
     EXPECT_EQ (test->getColor(), 'W');
@@ -21,7 +21,7 @@ TEST (TileTests, ConstrcutorTests)
     EXPECT_EQ (test->getPiece().getName(), "Rook");
     EXPECT_EQ (test->getPiece().getMovement(), Rook); 
 
-    p1 = Piece('X', "Pawn", Pawn);
+    p1 = Piece('X', "Pawn", Pawn, 0);
     test = new Tile(p1, 'B');
 
     EXPECT_EQ (test->getColor(), 'B');
@@ -39,7 +39,7 @@ TEST (TileTests, SetPieceTests)
     EXPECT_EQ (test->getPiece().getName(), "Empty");
     EXPECT_EQ (test->getPiece().getMovement(), None); 
 
-    Piece p1 = Piece('T', "Rook", Rook);
+    Piece p1 = Piece('T', "Rook", Rook, 0);
     test->setPiece(p1);
 
     EXPECT_EQ (test->getColor(), NULL);
@@ -47,7 +47,7 @@ TEST (TileTests, SetPieceTests)
     EXPECT_EQ (test->getPiece().getName(), "Rook");
     EXPECT_EQ (test->getPiece().getMovement(), Rook); 
 
-    p1 = Piece('X', "Pawn", Pawn);
+    p1 = Piece('X', "Pawn", Pawn, 0);
     test->setPiece(p1);
 
     EXPECT_EQ (test->getColor(), NULL);

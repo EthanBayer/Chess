@@ -59,18 +59,18 @@ void ChessBoard::setMap()
 void ChessBoard::setPieces()
 {
     pieces[0] = Piece();
-    pieces[1] = Piece('P', "Pawn", Pawn);
-    pieces[2] = Piece('R', "Rook", Rook);
-    pieces[3] = Piece('N', "Knight", Knight);
-    pieces[4] = Piece('B', "Bishop", Bishop);
-    pieces[5] = Piece('Q', "Queen", Queen);
-    pieces[6] = Piece('K', "King", King);
-    pieces[7] = Piece('p', "Pawn", Pawn);
-    pieces[8] = Piece('r', "Rook", Rook);
-    pieces[9] = Piece('n', "Knight", Knight);
-    pieces[10] = Piece('b', "Bishop", Bishop);
-    pieces[11] = Piece('q', "Queen", Queen);
-    pieces[12] = Piece('k', "King", King);
+    pieces[1] = Piece('P', "Pawn", Pawn, 1);
+    pieces[2] = Piece('R', "Rook", Rook, 1);
+    pieces[3] = Piece('N', "Knight", Knight, 1);
+    pieces[4] = Piece('B', "Bishop", Bishop, 1);
+    pieces[5] = Piece('Q', "Queen", Queen, 1);
+    pieces[6] = Piece('K', "King", King, 1);
+    pieces[7] = Piece('p', "Pawn", Pawn, 2);
+    pieces[8] = Piece('r', "Rook", Rook, 2);
+    pieces[9] = Piece('n', "Knight", Knight, 2);
+    pieces[10] = Piece('b', "Bishop", Bishop, 2);
+    pieces[11] = Piece('q', "Queen", Queen, 2);
+    pieces[12] = Piece('k', "King", King, 2);
 }
 
 ChessBoard::ChessBoard()

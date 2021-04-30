@@ -10,10 +10,13 @@ class Piece
         char symbol;
         std::string name;
         Movements m;
+        int player;
 
     public:
         Piece();
-        Piece(char symbol, std::string name, Movements m);
+        Piece(char symbol, std::string name, Movements m, int player);
+        void setPlayer(int player);
+        int getPlayer();
         void setSymbol(char Symbol);
         void setName(std::string name);
         void setMovement(Movements m);

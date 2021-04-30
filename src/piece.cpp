@@ -6,13 +6,25 @@ Piece::Piece()
     symbol = '0';
     name = "Empty";
     m = None;
+    player = 0;
 }
 
-Piece::Piece(char symbol, std::string name, Movements m)
+Piece::Piece(char symbol, std::string name, Movements m, int player)
 {
     this->symbol = symbol;
     this->name = name;
     this->m = m;
+    this->player = player;
+}
+
+void Piece::setPlayer(int player)
+{
+    this->player = player;
+}
+
+int Piece::getPlayer()
+{
+    return player;
 }
 
 void Piece::setSymbol(char symbol)
