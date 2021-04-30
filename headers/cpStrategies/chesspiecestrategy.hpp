@@ -4,6 +4,11 @@
 #include "../chessboard.hpp"
 class ChessBoard;
 
+/*
+Return 1 to indicate a valid movement,
+Return 2 to indicate an invalid movement,
+Return 3 to indicate an invalid choice,
+*/
 class ChessPieceStrategy
 {
     protected:
