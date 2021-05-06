@@ -251,6 +251,19 @@ void ChessBoard::printTiles()
     }
 }
 
+void ChessBoard::printPlayer()
+{
+    std::cout << std::endl;
+    for(int i = 0; i < 8; i++)
+    {
+        for(int j = 0; j < 8; j++)
+        {
+            std::cout << board[i][j].getPiece().getPlayer() << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
 void ChessBoard::move(int origRow, int origCol, int moveRow, int moveCol)
 {
     

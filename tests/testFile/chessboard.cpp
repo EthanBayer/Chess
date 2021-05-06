@@ -21,4 +21,8 @@ int main(void)
     std::cout << test.getName() << " Tiles: " << std::endl;
     test.printTiles();
     std::cout << std::endl;
+
+    std::cout << test.getName() << " Player denominations: " << std::endl;
+    test.printPlayer();
+    std::cout << std::endl;
 }
