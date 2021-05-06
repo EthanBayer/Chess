@@ -25,4 +25,8 @@ int main(void)
     std::cout << test.getName() << " Player denominations: " << std::endl;
     test.printPlayer();
     std::cout << std::endl;
+
+    std::cout << "Testing a move " << std::endl;
+    test.move(1, 7, 1, 5, 2);
+    test.printBoard();
 }
