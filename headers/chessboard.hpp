@@ -6,6 +6,7 @@
 #include <map>
 #include <iterator>
 #include <array>
+#include <vector>
 #include "cpStrategies/chesspiecestrategy.hpp"
 
 class ChessPieceStrategy;
@@ -17,8 +18,11 @@ class ChessBoard
         Tile board[8][8];
         std::map<Movements, ChessPieceStrategy*> PieceMovements;
         Piece pieces[13];
+        std::vector<Piece> whitePieces;
+        std::vector<Piece> blackPieces;
         void setMap();
         void setPieces();
+        void swapPieces(int origRow, int origCol, int moveRow, int moveCol);
     
     public:
         ChessBoard();
@@ -34,7 +38,7 @@ class ChessBoard
         void printBoard();
         void printTiles();
         void printPlayer();
-        void move(int turn, int origRow, int origCol, int moveRow, int moveCol);
+        int move(int turn, int origRow, int origCol, int moveRow, int moveCol);
 };
 
 #endif

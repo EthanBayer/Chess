@@ -51,7 +51,7 @@ void ChessBoard::setMap()
 
     KingC* k;
     ChessPieceStrategy* king = k;
-    p1.first =King;
+    p1.first = King;
     p1.second = king;
     PieceMovements.insert(p1);
 }
@@ -71,6 +71,36 @@ void ChessBoard::setPieces()
     pieces[10] = Piece('b', "Bishop", Bishop, 2);
     pieces[11] = Piece('q', "Queen", Queen, 2);
     pieces[12] = Piece('k', "King", King, 2);
+}
+
+void ChessBoard::swapPieces(int origRow, int origCol, int moveRow, int moveCol)
+{
+    Piece p = Piece();
+    Piece p1 = board[origRow][origCol].getPiece();
+    Piece p2 = board[moveRow][moveCol].getPiece();
+
+
+    if (p2.getPlayer() != 0)
+    {
+        if (p2.getPlayer() == 1)
+        {
+            whitePieces.push_back(p2);
+            board[moveRow][moveCol].setPiece(p1);
+            board[origRow][origCol].setPiece(p);
+
+        }
+        else
+        {
+            blackPieces.push_back(p2);
+            board[moveRow][moveCol].setPiece(p1);
+            board[origRow][origCol].setPiece(p); 
+        }
+    }
+    else
+    {
+        board[moveRow][moveCol].setPiece(p1);
+        board[origRow][origCol].setPiece(p); 
+    }
 }
 
 ChessBoard::ChessBoard()
@@ -264,7 +294,43 @@ void ChessBoard::printPlayer()
     }
 }
 
-void ChessBoard::move(int turn, int origRow, int origCol, int moveRow, int moveCol)
+// Return 2 if user needs to re-eneter information
+// Return 1 if move is complete and no repeat information is needed
+int ChessBoard::move(int turn, int origRow, int origCol, int moveRow, int moveCol)
 {
-    
+    Piece ogPiece = board[origRow][origCol].getPiece();
+    Piece nwPiece = board[moveRow][moveCol].getPiece();
+
+    char playerAnswer;
+
+    int checkMove = PieceMovements.find(ogPiece.getMovement())->second->movement(turn, origRow, origCol, moveRow, moveCol);
+
+    if (checkMove == 1)
+    {
+        std::cout << "Would you like to perform the movement (y/n): ";
+        std::cin >> playerAnswer;
+        std::cout << std::endl;
+
+        if (playerAnswer == 'y')
+        {
+            swapPieces(origRow, origCol, moveRow, moveCol);
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
+    }
+
+    if (checkMove == 2)
+    {
+        std::cout << "You are trying to perform an invalid movement, please select again." << std::endl;
+        return 2;
+    }
+
+    if (checkMove == 3)
+    {
+        std::cout << "You are not selecting an appropriate piece, please select again." << std::endl;
+        return 2;
+    }
 }
