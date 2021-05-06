@@ -34,7 +34,7 @@ class ChessBoard
         void printBoard();
         void printTiles();
         void printPlayer();
-        void move(int origRow, int origCol, int moveRow, int moveCol);
+        void move(int turn, int origRow, int origCol, int moveRow, int moveCol);
 };
 
 #endif

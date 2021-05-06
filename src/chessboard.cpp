@@ -264,7 +264,7 @@ void ChessBoard::printPlayer()
     }
 }
 
-void ChessBoard::move(int origRow, int origCol, int moveRow, int moveCol)
+void ChessBoard::move(int turn, int origRow, int origCol, int moveRow, int moveCol)
 {
     
 }
