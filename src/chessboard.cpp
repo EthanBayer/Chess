@@ -99,6 +99,11 @@ int ChessBoard::getMapSize()
     return PieceMovements.size();
 }
 
+Tile ChessBoard::getTileOnBoard(int row, int col)
+{
+    return board[row][col];
+}
+
 void ChessBoard::printPieces()
 {
     std::cout << std::endl << "Pieces" << std::endl;
@@ -244,4 +249,9 @@ void ChessBoard::printTiles()
         }
         std::cout << std::endl;
     }
+}
+
+void ChessBoard::move(int origRow, int origCol, int moveRow, int moveCol)
+{
+    
 }

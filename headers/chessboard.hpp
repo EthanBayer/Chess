@@ -25,6 +25,7 @@ class ChessBoard
         ChessBoard(std::string name);
         int getPiecesSize();
         int getMapSize();
+        Tile getTileOnBoard(int row, int col);
         void printPieces();
         void printMap();
         void setName(std::string name);
