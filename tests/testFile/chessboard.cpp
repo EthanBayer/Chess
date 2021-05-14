@@ -7,10 +7,10 @@ int main(void)
     ChessBoard test = ChessBoard();
 
     std::cout << "Pieces size: " << test.getPiecesSize() << std::endl;
-    std::cout << "Map Size: " << test.getMapSize() << std::endl;
+    //std::cout << "Map Size: " << test.getMapSize() << std::endl;
 
     test.printPieces();
-    test.printMap();
+    //test.printMap();
 
     test.setName("Test Board");
 

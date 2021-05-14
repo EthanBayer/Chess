@@ -1,5 +1,7 @@
+#ifndef CHESSPIECEMOVEMENTS_HPP
+#define CHESSPIECEMOVEMENTS_HPP
 
-#include "../../headers/cpStrategies/knight.hpp"
+#include "chessboard.hpp"
 
 /*
 Return 1 to indicate a valid movement,
@@ -8,9 +10,12 @@ Return 3 to indicate an invalid choice,
 
 turn => which player is playing
 */
-int KnightC::movement(int turn, int origRow, int origCol, int newRow, int newCol)
+static int movementKnight(ChessBoard* cb, int turn, int origRow, int origCol, int newRow, int newCol)
 {
-    // Check to see if you are not selectingan empty space or an enemy piece
+    //DEBUG
+    std::cout << "CHECK 2" << std::endl;
+
+    // Check to see if you are not selecting an empty space or an enemy piece
     if (cb->getTileOnBoard(origRow, origCol).getPiece().getPlayer() != turn)
     {
         return 3;
@@ -91,5 +96,24 @@ int KnightC::movement(int turn, int origRow, int origCol, int newRow, int newCol
     }
 
     return 2;
-
 }
+
+
+// Determining Function
+int moveSelect(Movements m, ChessBoard* cb, int turn, int origRow, int origCol, int newRow, int newCol)
+{
+    int use;
+    switch (m)
+    {
+        case 3:
+            use = movementKnight(cb, turn, origRow, origCol, newRow, newCol);
+            return use;
+            break;
+        default:
+            return 0;
+            break;
+    }
+}
+
+
+#endif

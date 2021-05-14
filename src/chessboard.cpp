@@ -1,60 +1,8 @@
 
 #include "../headers/chessboard.hpp"
-#include "../headers/cpStrategies/pawn.hpp"
-#include "../headers/cpStrategies/rook.hpp"
-#include "../headers/cpStrategies/bishop.hpp"
-#include "../headers/cpStrategies/knight.hpp"
-#include "../headers/cpStrategies/queen.hpp"
-#include "../headers/cpStrategies/king.hpp"
-#include "../headers/cpStrategies/none.hpp"
+#include "../headers/chesspiecemovements.hpp"
 #include <utility>
 
-void ChessBoard::setMap()
-{
-    std::pair<Movements, ChessPieceStrategy*> p1;
-
-    NoneC* z;
-    ChessPieceStrategy* none = z;
-    p1.first = None;
-    p1.second = none;
-    PieceMovements.insert(p1);
-
-    PawnC* p;
-    ChessPieceStrategy* pawn = p;
-    p1.first = Pawn;
-    p1.second = pawn;
-    PieceMovements.insert(p1);
-
-    RookC* r;
-    ChessPieceStrategy* rook = r;
-    p1.first = Rook;
-    p1.second = rook;
-    PieceMovements.insert(p1);
-
-    BishopC* b;
-    ChessPieceStrategy* bishop = b;
-    p1.first = Bishop;
-    p1.second = bishop;
-    PieceMovements.insert(p1);
-
-    KnightC* n;
-    ChessPieceStrategy* knight = n;
-    p1.first = Knight;
-    p1.second = n;
-    PieceMovements.insert(p1);
-
-    QueenC* q;
-    ChessPieceStrategy* queen = q;
-    p1.first = Queen;
-    p1.second = queen;
-    PieceMovements.insert(p1); 
-
-    KingC* k;
-    ChessPieceStrategy* king = k;
-    p1.first = King;
-    p1.second = king;
-    PieceMovements.insert(p1);
-}
 
 void ChessBoard::setPieces()
 {
@@ -106,7 +54,6 @@ void ChessBoard::swapPieces(int origRow, int origCol, int moveRow, int moveCol)
 ChessBoard::ChessBoard()
 {
     name = "Chess Board";
-    setMap();
     setPieces();
     initializeBoard();
 }
@@ -114,7 +61,6 @@ ChessBoard::ChessBoard()
 ChessBoard::ChessBoard(std::string name)
 {
     this->name = name;
-    setMap();
     setPieces();
     initializeBoard();
 }
@@ -122,11 +68,6 @@ ChessBoard::ChessBoard(std::string name)
 int ChessBoard::getPiecesSize()
 {
     return sizeof(pieces)/sizeof(pieces[0]);
-}
-
-int ChessBoard::getMapSize()
-{
-    return PieceMovements.size();
 }
 
 Tile ChessBoard::getTileOnBoard(int row, int col)
@@ -140,16 +81,6 @@ void ChessBoard::printPieces()
     for (int i = 0; i < 13; i++)
     {
         std::cout << pieces[i].getSymbol() << " ";
-    }
-    std::cout << std::endl;
-}
-
-void ChessBoard::printMap()
-{
-    std::cout << std::endl << "Map Values" << std::endl;
-    for(auto i : PieceMovements)
-    {
-        std::cout << i.first << std::endl;
     }
     std::cout << std::endl;
 }
@@ -303,7 +234,12 @@ int ChessBoard::move(int turn, int origRow, int origCol, int moveRow, int moveCo
 
     char playerAnswer;
 
-    int checkMove = PieceMovements.find(ogPiece.getMovement())->second->movement(turn, origRow, origCol, moveRow, moveCol);
+    //DEBUG
+    //std::cout << *PieceMovements[3] << std::endl;
+    std::cout << "Check" << std::endl;
+    std::cout << ogPiece.getMovement() << std::endl;
+
+    int checkMove = moveSelect(ogPiece.getMovement(), this, turn, origRow, origCol, moveRow, moveCol);
 
     if (checkMove == 1)
     {
