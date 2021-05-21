@@ -10,10 +10,47 @@ Return 3 to indicate an invalid choice,
 
 turn => which player is playing
 */
+
+// Pawn
+static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int newRow, int newCol)
+{
+    // Check to see if you are not selecting an empty space or an enemy piece
+    if (cb->getTileOnBoard(origRow, origCol).getPiece().getPlayer() != turn)
+    {
+        return 3;
+    }
+
+    // Check to see if you are not moving on a friendly Piece
+    if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() == turn)
+    {
+        return 3;
+    }
+
+    if (turn == 1)
+    {
+        if (newRow >= 0)
+        {
+            if (origRow - 1 == newRow)
+            {
+                
+            }
+        }
+        else
+        {
+            return 2;
+        }
+    }
+    else
+    {
+
+    }
+}
+
+// Knight
 static int movementKnight(ChessBoard* cb, int turn, int origRow, int origCol, int newRow, int newCol)
 {
     //DEBUG
-    std::cout << "CHECK 2" << std::endl;
+    //std::cout << "CHECK 2" << std::endl;
 
     // Check to see if you are not selecting an empty space or an enemy piece
     if (cb->getTileOnBoard(origRow, origCol).getPiece().getPlayer() != turn)
@@ -97,6 +134,8 @@ static int movementKnight(ChessBoard* cb, int turn, int origRow, int origCol, in
 
     return 2;
 }
+
+
 
 
 // Determining Function

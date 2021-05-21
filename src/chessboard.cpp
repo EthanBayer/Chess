@@ -27,10 +27,10 @@ void ChessBoard::swapPieces(int origRow, int origCol, int moveRow, int moveCol)
     Piece p1 = board[origRow][origCol].getPiece();
     Piece p2 = board[moveRow][moveCol].getPiece();
 
-
+    // Check to see if the tile has a enemy piece
     if (p2.getPlayer() != 0)
     {
-        if (p2.getPlayer() == 1)
+        if (p2.getPlayer() == 1)  
         {
             whitePieces.push_back(p2);
             board[moveRow][moveCol].setPiece(p1);
