@@ -7,6 +7,7 @@
 Return 1 to indicate a valid movement,
 Return 2 to indicate an invalid movement,
 Return 3 to indicate an invalid choice,
+Return 4, exclusive for pawn when reaching end of board
 
 turn => which player is playing
 */
@@ -26,24 +27,61 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
         return 3;
     }
 
-    if (turn == 1)
-    {
-        if (newRow >= 0)
+    //Need to make function to check out of bounds which will return 3 if so
+
+    /*
+    TEMPLATE (not speecifying second player)
+
+        if (col is the same AND Row has changed)
         {
-            if (origRow - 1 == newRow)
+            if (Row is off by 1)
             {
+                if no piece is in front
+                 return 1
+                else
+                 return 2
                 
+                if hit final row
+                 return 4
+            }
+            else if (Row is off by 2)
+            {
+                if no piece is in front AND you are at starting row:
+                return 1
+                else
+                return 2
+
+                if hit final row
+                 return 4
+            }
+            else
+            {
+                return 2
+            }
+        }
+        else if (col has changed AND row has changed)
+        {
+            if (col and row are both 1 off AND an enemy piece is there)
+            {
+                if (hit final row)
+                {
+                    return 4
+                }
+                else
+                {
+                    return 1
+                }
+            }
+            else 
+            {
+                return 2
             }
         }
         else
         {
-            return 2;
+            return 2
         }
-    }
-    else
-    {
-
-    }
+    */
 }
 
 // Knight

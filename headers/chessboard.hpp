@@ -32,6 +32,11 @@ class ChessBoard
         void printTiles();
         void printPlayer();
         int move(int turn, int origRow, int origCol, int moveRow, int moveCol);
+
+        // Future functions:
+        // reset(), 
+        // Improve print board for numbering
+        // print pieces
 };
 
 #endif
