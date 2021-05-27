@@ -276,6 +276,7 @@ void ChessBoard::printCapturedWhitePieces()
     }
     else
     {
+        score = 0;
         std::cout << "White Pieces Captured: ";
         for (int i = 0; i < whitePieces.size(); i++)
         {
@@ -297,6 +298,7 @@ void ChessBoard::printCapturedBlackPieces()
     }
     else
     {
+        score = 0;
         std::cout << "Black Pieces Captured: ";
         for (int i = 0; i < blackPieces.size(); i++)
         {

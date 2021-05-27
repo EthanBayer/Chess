@@ -23,5 +23,12 @@ ADD_EXECUTABLE( chessboard_tests
     src/tile.cpp
 )
 
+ADD_EXECUTABLE( capturedpieces_tests
+    tests/testFile/capturedpiecetests.cpp
+    src/chessboard.cpp
+    src/piece.cpp
+    src/tile.cpp
+)
+
 TARGET_LINK_LIBRARIES(unit_tests gtest)
 TARGET_COMPILE_DEFINITIONS(unit_tests PRIVATE gtest_disable_pthreads=ON)
