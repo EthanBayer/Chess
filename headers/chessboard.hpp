@@ -18,6 +18,7 @@ class ChessBoard
         std::vector<Piece> blackPieces;
         void setPieces();
         void swapPieces(int origRow, int origCol, int moveRow, int moveCol);
+        int scoreTally(Movements num);
     
     public:
         ChessBoard();
@@ -31,12 +32,15 @@ class ChessBoard
         void printBoard();
         void printTiles();
         void printPlayer();
+        void printCapturedWhitePieces();
+        void printCapturedBlackPieces();
         int move(int turn, int origRow, int origCol, int moveRow, int moveCol);
 
         // Future functions:
         // reset(), 
         // Improve print board for numbering
         // print pieces
+        // Add point calculator function
 };
 
 #endif

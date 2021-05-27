@@ -3,7 +3,7 @@
 #include "../headers/chesspiecemovements.hpp"
 #include <utility>
 
-
+// Helper function to initialize the pieces used by the board
 void ChessBoard::setPieces()
 {
     pieces[0] = Piece();
@@ -21,6 +21,9 @@ void ChessBoard::setPieces()
     pieces[12] = Piece('k', "King", King, 2);
 }
 
+// Helper function to swap two pieces
+// Handles a swap between to enemy pieces
+// Handles a swap between a piece and an empty space
 void ChessBoard::swapPieces(int origRow, int origCol, int moveRow, int moveCol)
 {
     Piece p = Piece();
@@ -65,16 +68,19 @@ ChessBoard::ChessBoard(std::string name)
     initializeBoard();
 }
 
+// Function to print the size of the array holding the pieces
 int ChessBoard::getPiecesSize()
 {
     return sizeof(pieces)/sizeof(pieces[0]);
 }
 
+// Function to acquire a specific tile on the board
 Tile ChessBoard::getTileOnBoard(int row, int col)
 {
     return board[row][col];
 }
 
+// Function to print the chess pieces, mainly for testing
 void ChessBoard::printPieces()
 {
     std::cout << std::endl << "Pieces" << std::endl;
@@ -85,16 +91,47 @@ void ChessBoard::printPieces()
     std::cout << std::endl;
 }
 
+// Function to return the point value of a given Chess piece (using common values)
+int ChessBoard::scoreTally(Movements num)
+{
+    switch (num)
+    {
+        case 1:
+            return 1;
+            break;
+        case 3:
+            return 3;
+            break;
+        case 4:
+            return 3;
+            break;
+        case 2:
+            return 5;
+            break;
+        case 5:
+            return 9;
+            break;
+        default:
+            return 0;
+            break;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+// Function to set the board Name 
 void ChessBoard::setName(std::string name)
 {
     this->name = name;
 }
 
+// Function to get the chessboard's name
 std::string ChessBoard::getName()
 {
     return name;
 }
 
+// Initializes the board's pieces
 void ChessBoard::initializeBoard()
 {
     //Sets top black pieces
@@ -186,6 +223,7 @@ void ChessBoard::initializeBoard()
     board[7][7] = Tile(pieces[2], 'W');
 }
 
+// Function to print the piece symbols on the board
 void ChessBoard::printBoard()
 {
     std::cout << std::endl;
@@ -199,6 +237,7 @@ void ChessBoard::printBoard()
     }
 }
 
+// Function to print the color of the tiles
 void ChessBoard::printTiles()
 {
     std::cout << std::endl;
@@ -212,6 +251,7 @@ void ChessBoard::printTiles()
     }
 }
 
+// Function to print player designation of the pieces
 void ChessBoard::printPlayer()
 {
     std::cout << std::endl;
@@ -223,6 +263,28 @@ void ChessBoard::printPlayer()
         }
         std::cout << std::endl;
     }
+}
+
+// Function to print out the captured white pieces 
+void ChessBoard::printCapturedWhitePieces()
+{
+    if (whitePieces.size() == 0)
+    {
+        std::cout << "No White pieces have been captured" << std::endl;
+    }
+    else
+    {
+        for (auto e : whitePieces)
+        {
+            
+        }
+    }
+}
+
+// Function to print out the captured black pieces
+void ChessBoard::printCapturedBlackPieces()
+{
+    
 }
 
 // Return 2 if user needs to re-eneter information
