@@ -41,6 +41,10 @@ class ChessBoard
         // Improve print board for numbering
         // print pieces
         // Add point calculator function
+
+        // TEST functions
+        void testAddWhiteCapturedPiece(Piece p);
+        void testAddBlackCapturedPiece(Piece p);
 };
 
 #endif

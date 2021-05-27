@@ -268,23 +268,43 @@ void ChessBoard::printPlayer()
 // Function to print out the captured white pieces 
 void ChessBoard::printCapturedWhitePieces()
 {
+    int score = 0;
+
     if (whitePieces.size() == 0)
     {
         std::cout << "No White pieces have been captured" << std::endl;
     }
     else
     {
-        for (auto e : whitePieces)
+        std::cout << "White Pieces Captured: ";
+        for (int i = 0; i < whitePieces.size(); i++)
         {
-            
+            score += scoreTally(whitePieces.at(i).getMovement());
+            std::cout << whitePieces.at(i).getSymbol() << " ";
         }
+        std::cout << std::endl << "Current Black Player Score: " << score << std::endl;
     }
 }
 
 // Function to print out the captured black pieces
 void ChessBoard::printCapturedBlackPieces()
 {
-    
+    int score = 0;
+
+    if (blackPieces.size() == 0)
+    {
+        std::cout << "No Black pieces have been captured" << std::endl;
+    }
+    else
+    {
+        std::cout << "Black Pieces Captured: ";
+        for (int i = 0; i < blackPieces.size(); i++)
+        {
+            score += scoreTally(blackPieces.at(i).getMovement());
+            std::cout << blackPieces.at(i).getSymbol() << " ";
+        }
+        std::cout << std::endl << "Current White Player Score: " << score << std::endl;
+    }
 }
 
 // Return 2 if user needs to re-eneter information
@@ -331,4 +351,19 @@ int ChessBoard::move(int turn, int origRow, int origCol, int moveRow, int moveCo
         std::cout << "You are not selecting an appropriate piece, please select again." << std::endl;
         return 2;
     }
+}
+
+
+/////////////////////////////////////////////
+// TEST Functions
+/////////////////////////////////////////////
+
+void ChessBoard::testAddWhiteCapturedPiece(Piece p)
+{
+    whitePieces.push_back(p);
+}
+
+void ChessBoard::testAddBlackCapturedPiece(Piece p)
+{
+    blackPieces.push_back(p);
 }
