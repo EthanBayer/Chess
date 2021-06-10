@@ -38,14 +38,168 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
     }
 
     // Pawn Move
-    if (turn == 1)
+    if (turn == 1) // White player
     {
+        // Checking if pawn has moved up once or twice
         if (origCol == newCol && origRow != newRow)
         {
-            
+            if (origRow - 1 == newRow)
+            {
+                if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() != 2)
+                {
+                    if (newRow == 0)
+                    {
+                        return 4;
+                    }
+                    return 1;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+            else if (origRow - 2 == newRow)
+            {
+                if (origRow == 6 && cb->getTileOnBoard(origRow + 1, origCol).getPiece().getPlayer() != 2)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+            else
+            {
+                return 2;
+            }
+        }
+        // Check the Pawn move to capture an enemy piece
+        else if (origCol != newCol && origRow != newRow)
+        {
+            if (origRow - 1 == newRow && origCol - 1 == newCol)
+            {
+                if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() == 2)
+                {
+                    if (newRow == 0)
+                    {
+                        return 4;
+                    }
+                    return 1;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+            else if (origRow - 1 == newRow && origCol + 1 == newCol)
+            {
+                if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() == 2)
+                {
+                    if (newRow == 0)
+                    {
+                        return 4;
+                    }
+                    return 1;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+            else
+            {
+                return 2;
+            }
+        }
+        // Otherwise return 2 to indicate invalid move
+        else
+        {
+            return 2;
+        }
+    }
+    else if (turn == 2) // Black player
+    {
+        // Checking if pawn has moved up once or twice
+        if (origCol == newCol && origRow != newRow)
+        {
+            if (origRow + 1 == newRow)
+            {
+                if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() != 2)
+                {
+                    if (newRow == 0)
+                    {
+                        return 4;
+                    }
+                    return 1;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+            else if (origRow + 2 == newRow)
+            {
+                if (origRow == 6 && cb->getTileOnBoard(origRow + 1, origCol).getPiece().getPlayer() != 2)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+            else
+            {
+                return 2;
+            }
+        }
+        // Check the Pawn move to capture an enemy piece
+        else if (origCol != newCol && origRow != newRow)
+        {
+            if (origRow + 1 == newRow && origCol - 1 == newCol)
+            {
+                if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() == 2)
+                {
+                    if (newRow == 0)
+                    {
+                        return 4;
+                    }
+                    return 1;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+            else if (origRow + 1 == newRow && origCol + 1 == newCol)
+            {
+                if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() == 2)
+                {
+                    if (newRow == 0)
+                    {
+                        return 4;
+                    }
+                    return 1;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+            else
+            {
+                return 2;
+            }
+        }
+        // Otherwise return 2 to indicate invalid move
+        else
+        {
+            return 2;
         }
     }
     
+    return 2;
 
     /*
     TEMPLATE (not speecifying second player)
@@ -68,9 +222,6 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
                 return 1
                 else
                 return 2
-
-                if hit final row
-                 return 4
             }
             else
             {
