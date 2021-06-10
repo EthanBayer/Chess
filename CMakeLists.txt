@@ -22,6 +22,7 @@ ADD_EXECUTABLE( chessboard_tests
     src/chessboard.cpp
     src/piece.cpp
     src/tile.cpp
+    headers/chesspiecemovements.hpp
 )
 
 ADD_EXECUTABLE( capturedpieces_tests

@@ -1,6 +1,7 @@
 
 #include "../headers/chessboard.hpp"
 #include "../headers/chesspiecemovements.hpp"
+#include "../headers/functions.hpp"
 #include <utility>
 
 // Helper function to initialize the pieces used by the board
@@ -313,6 +314,11 @@ void ChessBoard::printCapturedBlackPieces()
 // Return 1 if move is complete and no repeat information is needed
 int ChessBoard::move(int turn, int origRow, int origCol, int moveRow, int moveCol)
 {
+    if (checkPositions(origRow, origCol, moveRow, moveCol) == 3)
+    {
+        return 2;
+    }
+
     Piece ogPiece = board[origRow][origCol].getPiece();
     Piece nwPiece = board[moveRow][moveCol].getPiece();
 

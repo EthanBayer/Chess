@@ -13,6 +13,9 @@ Return 4, exclusive for pawn when reaching end of board
 turn => which player is playing
 */
 
+// turn = 1 = white
+// turn = 2 = black
+
 // Pawn
 static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int newRow, int newCol)
 {
@@ -28,10 +31,21 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
         return 3;
     }
 
+    // Checking out of bounds - Not Really needed here, handled in move function
     if (checkPositions(origRow, origCol, newRow, newCol) == 3)
     {
         return 3;
     }
+
+    // Pawn Move
+    if (turn == 1)
+    {
+        if (origCol == newCol && origRow != newRow)
+        {
+            
+        }
+    }
+    
 
     /*
     TEMPLATE (not speecifying second player)
