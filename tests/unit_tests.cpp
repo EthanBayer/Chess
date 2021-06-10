@@ -2,6 +2,8 @@
 
 #include "testFile/piecetests.hpp"
 #include "testFile/tiletests.hpp"
+#include "testFile/checkPositionsTest.hpp"
+
 
 int main(int argc, char **argv)
 {

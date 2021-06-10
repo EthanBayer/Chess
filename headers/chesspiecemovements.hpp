@@ -2,6 +2,7 @@
 #define CHESSPIECEMOVEMENTS_HPP
 
 #include "chessboard.hpp"
+#include "functions.hpp"
 
 /*
 Return 1 to indicate a valid movement,
@@ -27,7 +28,10 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
         return 3;
     }
 
-    //Need to make function to check out of bounds which will return 3 if so
+    if (checkPositions(origRow, origCol, newRow, newCol) == 3)
+    {
+        return 3;
+    }
 
     /*
     TEMPLATE (not speecifying second player)
@@ -87,9 +91,6 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
 // Knight
 static int movementKnight(ChessBoard* cb, int turn, int origRow, int origCol, int newRow, int newCol)
 {
-    //DEBUG
-    //std::cout << "CHECK 2" << std::endl;
-
     // Check to see if you are not selecting an empty space or an enemy piece
     if (cb->getTileOnBoard(origRow, origCol).getPiece().getPlayer() != turn)
     {
@@ -98,6 +99,11 @@ static int movementKnight(ChessBoard* cb, int turn, int origRow, int origCol, in
 
     // Check to see if you are not moving on a friendly Piece
     if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() == turn)
+    {
+        return 3;
+    }
+
+    if (checkPositions(origRow, origCol, newRow, newCol) == 3)
     {
         return 3;
     }

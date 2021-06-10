@@ -10,6 +10,7 @@ ADD_EXECUTABLE( unit_tests
     tests/unit_tests.cpp
     src/piece.cpp
     src/tile.cpp
+    headers/functions.hpp
 )
 
 ADD_EXECUTABLE( numbersplitter_tests 
