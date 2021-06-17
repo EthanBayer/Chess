@@ -346,7 +346,7 @@ static int movementKnight(ChessBoard* cb, int turn, int origRow, int origCol, in
 
 
 
-
+// INCOMPLETE
 // Determining Function
 int moveSelect(Movements m, ChessBoard* cb, int turn, int origRow, int origCol, int newRow, int newCol)
 {

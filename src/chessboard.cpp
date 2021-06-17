@@ -375,3 +375,13 @@ void ChessBoard::testAddBlackCapturedPiece(Piece p)
 {
     blackPieces.push_back(p);
 }
+
+void ChessBoard::removePiece(int row, int col)
+{
+    board[row][col].setPiece(Piece());
+}
+
+void ChessBoard::addPiece(int row, int col, Piece p)
+{
+    board[row][col].setPiece(p);
+}

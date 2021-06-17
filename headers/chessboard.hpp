@@ -45,6 +45,8 @@ class ChessBoard
         // TEST functions
         void testAddWhiteCapturedPiece(Piece p);
         void testAddBlackCapturedPiece(Piece p);
+        void removePiece(int row, int col);
+        void addPiece(int row, int col, Piece p);
 };
 
 #endif

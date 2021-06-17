@@ -27,6 +27,6 @@ int main(void)
     std::cout << std::endl;
 
     std::cout << "Testing a move " << std::endl;
-    test.move(1, 8, 1, 5, 2);
+    test.move(1, 7, 1, 4, 2);
     test.printBoard();
 }
