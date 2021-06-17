@@ -10,7 +10,7 @@ int main(void)
     test.printBoard();
     std::cout << std::endl;
 
-    // TEST Board 1
+    // Set tests to check the validity of the Pawn movement function
     
     // Checking straight movements
     std::cout << "Pawn Move 1 from Start, white" << std::endl;
@@ -232,6 +232,24 @@ int main(void)
     test.move(2, 3, 2, 6, 2);
     test.printBoard();
     std::cout << std::endl; 
+
+
+    // Other
+    std::cout << "Adjusting the board" << std::endl;
+    test.addPiece(5, 4, Piece('P', "Pawn", Pawn, 1));
+    test.addPiece(2, 4, Piece('p', "Pawn", Pawn, 2));
+    test.printBoard();
+    std::cout << std::endl;
+
+    std::cout << "Attempt to move pawn past friendly pawn, white" << std::endl;
+    test.move(1, 6, 4, 4, 4);
+    test.printBoard();
+    std::cout << std::endl;
+
+    std::cout << "Attempt to move pawn past friendly pawn, black" << std::endl;
+    test.move(2, 1, 4, 3, 4);
+    test.printBoard();
+    std::cout << std::endl;
 }
 
 

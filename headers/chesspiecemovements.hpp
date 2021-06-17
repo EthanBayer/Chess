@@ -60,9 +60,23 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
             }
             else if (origRow - 2 == newRow)
             {
-                if (origRow == 6 && cb->getTileOnBoard(origRow - 1, origCol).getPiece().getPlayer() != 2 && cb->getTileOnBoard(origRow - 2, origCol).getPiece().getPlayer() != 2)
+                if (origRow == 6 && cb->getTileOnBoard(origRow - 1, origCol).getPiece().getPlayer() != 2)
                 {
-                    return 1;
+                    if (cb->getTileOnBoard(origRow - 2, origCol).getPiece().getPlayer() != 2)
+                    {
+                        if (cb->getTileOnBoard(origRow - 1, origCol).getPiece().getPlayer() != 1)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return 2;
+                        }
+                    }
+                    else
+                    {
+                        return 2;
+                    }
                 }
                 else
                 {
@@ -140,9 +154,23 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
             }
             else if (origRow + 2 == newRow)
             {
-                if (origRow == 1 && cb->getTileOnBoard(origRow + 1, origCol).getPiece().getPlayer() != 1 && cb->getTileOnBoard(origRow + 2, origCol).getPiece().getPlayer() != 1)
+                if (origRow == 1 && cb->getTileOnBoard(origRow + 1, origCol).getPiece().getPlayer() != 1)
                 {
-                    return 1;
+                    if (cb->getTileOnBoard(origRow + 2, origCol).getPiece().getPlayer() != 1)
+                    {
+                        if (cb->getTileOnBoard(origRow + 1, origCol).getPiece().getPlayer() != 2)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return 2;
+                        }
+                    }
+                    else
+                    {
+                        return 2;
+                    }
                 }
                 else
                 {
