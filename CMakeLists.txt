@@ -25,6 +25,15 @@ ADD_EXECUTABLE( chessboard_tests
     headers/chesspiecemovements.hpp
 )
 
+ADD_EXECUTABLE( pawnmovement_tests
+    tests/testFile/moveTests/pawnMoveTests.cpp
+    src/chessboard.cpp
+    src/piece.cpp
+    src/tile.cpp
+    headers/chesspiecemovements.hpp
+    headers/functions.hpp
+)
+
 ADD_EXECUTABLE( capturedpieces_tests
     tests/testFile/capturedpiecetests.cpp
     src/chessboard.cpp

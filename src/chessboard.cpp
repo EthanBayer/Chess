@@ -316,6 +316,7 @@ int ChessBoard::move(int turn, int origRow, int origCol, int moveRow, int moveCo
 {
     if (checkPositions(origRow, origCol, moveRow, moveCol) == 3)
     {
+        std::cout << "Yoo are trying to access something outside of the board." << std::endl;
         return 2;
     }
 
@@ -326,8 +327,8 @@ int ChessBoard::move(int turn, int origRow, int origCol, int moveRow, int moveCo
 
     //DEBUG
     //std::cout << *PieceMovements[3] << std::endl;
-    std::cout << "Check" << std::endl;
-    std::cout << ogPiece.getMovement() << std::endl;
+    std::cout << "Piece Value: " << ogPiece.getMovement() << std::endl;
+    std::cout << "Player: " << ogPiece.getPlayer() << std::endl;
 
     int checkMove = moveSelect(ogPiece.getMovement(), this, turn, origRow, origCol, moveRow, moveCol);
 
@@ -358,6 +359,24 @@ int ChessBoard::move(int turn, int origRow, int origCol, int moveRow, int moveCo
     {
         std::cout << "You are not selecting an appropriate piece, please select again." << std::endl;
         return 2;
+    }
+
+    if (checkMove == 4)
+    {
+        std::cout << "Would you like to perform the movement (y/n): ";
+        std::cin >> playerAnswer;
+        std::cout << std::endl;
+
+        if (playerAnswer == 'y')
+        {
+            std::cout << "Pawn has reached end of the board." << std::endl;
+            swapPieces(origRow, origCol, moveRow, moveCol);
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
     }
 }
 

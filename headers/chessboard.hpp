@@ -7,7 +7,6 @@
 #include <iterator>
 #include <array>
 #include <vector>
-
 class ChessBoard
 {
     private:

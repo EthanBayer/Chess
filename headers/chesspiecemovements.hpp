@@ -60,7 +60,7 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
             }
             else if (origRow - 2 == newRow)
             {
-                if (origRow == 6 && cb->getTileOnBoard(origRow + 1, origCol).getPiece().getPlayer() != 2)
+                if (origRow == 6 && cb->getTileOnBoard(origRow - 1, origCol).getPiece().getPlayer() != 2 && cb->getTileOnBoard(origRow - 2, origCol).getPiece().getPlayer() != 2)
                 {
                     return 1;
                 }
@@ -125,9 +125,9 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
         {
             if (origRow + 1 == newRow)
             {
-                if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() != 2)
+                if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() != 1)
                 {
-                    if (newRow == 0)
+                    if (newRow == 7)
                     {
                         return 4;
                     }
@@ -140,7 +140,7 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
             }
             else if (origRow + 2 == newRow)
             {
-                if (origRow == 6 && cb->getTileOnBoard(origRow + 1, origCol).getPiece().getPlayer() != 2)
+                if (origRow == 1 && cb->getTileOnBoard(origRow + 1, origCol).getPiece().getPlayer() != 1 && cb->getTileOnBoard(origRow + 2, origCol).getPiece().getPlayer() != 1)
                 {
                     return 1;
                 }
@@ -159,9 +159,9 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
         {
             if (origRow + 1 == newRow && origCol - 1 == newCol)
             {
-                if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() == 2)
+                if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() == 1)
                 {
-                    if (newRow == 0)
+                    if (newRow == 7)
                     {
                         return 4;
                     }
@@ -174,9 +174,9 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
             }
             else if (origRow + 1 == newRow && origCol + 1 == newCol)
             {
-                if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() == 2)
+                if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() == 1)
                 {
-                    if (newRow == 0)
+                    if (newRow == 7)
                     {
                         return 4;
                     }
@@ -353,6 +353,10 @@ int moveSelect(Movements m, ChessBoard* cb, int turn, int origRow, int origCol, 
     int use;
     switch (m)
     {
+        case 1:
+            use = movementPawn(cb, turn, origRow, origCol, newRow, newCol);
+            return use;
+            break;
         case 3:
             use = movementKnight(cb, turn, origRow, origCol, newRow, newCol);
             return use;
