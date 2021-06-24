@@ -281,6 +281,96 @@ static int movementPawn(ChessBoard* cb, int turn, int origRow, int origCol, int 
     */
 }
 
+//////////////////////////////////
+// Rook 
+static int movementRook(ChessBoard* cb, int turn, int origRow, int origCol, int newRow, int newCol)
+{
+    // Check to see if you are not selecting an empty space or an enemy piece
+    if (cb->getTileOnBoard(origRow, origCol).getPiece().getPlayer() != turn)
+    {
+        return 3;
+    }
+
+    // Check to see if you are not moving on a friendly Piece
+    if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() == turn)
+    {
+        return 3;
+    }
+
+    // Up and Down
+    if (origRow != newRow && origCol == newCol)
+    {
+        // Up
+        if (origRow < newRow)
+        {
+            for (int i = origRow + 1; i < newRow; i++)
+            {
+                if (cb->getTileOnBoard(i, origCol).getPiece().getPlayer() != 0)
+                {
+                    return 2;
+                }
+            }
+            return 1; 
+        }
+        // Down
+        else if (origRow > newRow)
+        {
+            for (int i = origRow - 1; i > newRow; i--)
+            {
+               if (cb->getTileOnBoard(i, origCol).getPiece().getPlayer() != 0)
+                {
+                    return 2;
+                }
+            }
+            return 1; 
+        }
+        // Default
+        else
+        {
+            return 2;
+        }
+    }
+    // Left and Right
+    else if (origRow == newRow && origCol != newCol)
+    {
+        // Right
+        if (origCol < newCol)
+        {
+            for (int i = origCol + 1; i < newCol; i++)
+            {
+                if (cb->getTileOnBoard(i, origCol).getPiece().getPlayer() != 0)
+                {
+                    return 2;
+                }
+            }
+            return 1;
+        }
+        // Left
+        else if (origCol > newCol)
+        {
+            for (int i = origCol - 1; i > newCol; i--)
+            {
+                if (cb->getTileOnBoard(i, origCol).getPiece().getPlayer() != 0)
+                {
+                    return 2;
+                }
+            }
+            return 1;
+        }
+        //Default
+        else
+        {
+            return 2;
+        }
+    }
+    // Default
+    else
+    {
+        return 2;
+    }
+}
+
+////////////////////////////////////
 // Knight
 static int movementKnight(ChessBoard* cb, int turn, int origRow, int origCol, int newRow, int newCol)
 {
@@ -383,6 +473,10 @@ int moveSelect(Movements m, ChessBoard* cb, int turn, int origRow, int origCol, 
     {
         case 1:
             use = movementPawn(cb, turn, origRow, origCol, newRow, newCol);
+            return use;
+            break;
+        case 2:
+            use = movementRook(cb, turn, origRow, origCol, newRow, newCol);
             return use;
             break;
         case 3:
