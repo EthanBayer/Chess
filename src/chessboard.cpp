@@ -1,82 +1,63 @@
 
 #include "../headers/chessboard.hpp"
-#include "../headers/cpStrategies/pawn.hpp"
-#include "../headers/cpStrategies/rook.hpp"
-#include "../headers/cpStrategies/bishop.hpp"
-#include "../headers/cpStrategies/knight.hpp"
-#include "../headers/cpStrategies/queen.hpp"
-#include "../headers/cpStrategies/king.hpp"
-#include "../headers/cpStrategies/none.hpp"
+#include "../headers/chesspiecemovements.hpp"
+#include "../headers/functions.hpp"
 #include <utility>
 
-void ChessBoard::setMap()
-{
-    std::pair<Movements, ChessPieceStrategy*> p1;
-
-    NoneC* z;
-    ChessPieceStrategy* none = z;
-    p1.first = None;
-    p1.second = none;
-    PieceMovements.insert(p1);
-
-    PawnC* p;
-    ChessPieceStrategy* pawn = p;
-    p1.first = Pawn;
-    p1.second = pawn;
-    PieceMovements.insert(p1);
-
-    RookC* r;
-    ChessPieceStrategy* rook = r;
-    p1.first = Rook;
-    p1.second = rook;
-    PieceMovements.insert(p1);
-
-    BishopC* b;
-    ChessPieceStrategy* bishop = b;
-    p1.first = Bishop;
-    p1.second = bishop;
-    PieceMovements.insert(p1);
-
-    KnightC* n;
-    ChessPieceStrategy* knight = n;
-    p1.first = Knight;
-    p1.second = n;
-    PieceMovements.insert(p1);
-
-    QueenC* q;
-    ChessPieceStrategy* queen = q;
-    p1.first = Queen;
-    p1.second = queen;
-    PieceMovements.insert(p1); 
-
-    KingC* k;
-    ChessPieceStrategy* king = k;
-    p1.first =King;
-    p1.second = king;
-    PieceMovements.insert(p1);
-}
-
+// Helper function to initialize the pieces used by the board
 void ChessBoard::setPieces()
 {
     pieces[0] = Piece();
-    pieces[1] = Piece('P', "Pawn", Pawn);
-    pieces[2] = Piece('R', "Rook", Rook);
-    pieces[3] = Piece('N', "Knight", Knight);
-    pieces[4] = Piece('B', "Bishop", Bishop);
-    pieces[5] = Piece('Q', "Queen", Queen);
-    pieces[6] = Piece('K', "King", King);
-    pieces[7] = Piece('p', "Pawn", Pawn);
-    pieces[8] = Piece('r', "Rook", Rook);
-    pieces[9] = Piece('n', "Knight", Knight);
-    pieces[10] = Piece('b', "Bishop", Bishop);
-    pieces[11] = Piece('q', "Queen", Queen);
-    pieces[12] = Piece('k', "King", King);
+    pieces[1] = Piece('P', "Pawn", Pawn, 1);
+    pieces[2] = Piece('R', "Rook", Rook, 1);
+    pieces[3] = Piece('N', "Knight", Knight, 1);
+    pieces[4] = Piece('B', "Bishop", Bishop, 1);
+    pieces[5] = Piece('Q', "Queen", Queen, 1);
+    pieces[6] = Piece('K', "King", King, 1);
+    pieces[7] = Piece('p', "Pawn", Pawn, 2);
+    pieces[8] = Piece('r', "Rook", Rook, 2);
+    pieces[9] = Piece('n', "Knight", Knight, 2);
+    pieces[10] = Piece('b', "Bishop", Bishop, 2);
+    pieces[11] = Piece('q', "Queen", Queen, 2);
+    pieces[12] = Piece('k', "King", King, 2);
+}
+
+// Helper function to swap two pieces
+// Handles a swap between to enemy pieces
+// Handles a swap between a piece and an empty space
+void ChessBoard::swapPieces(int origRow, int origCol, int moveRow, int moveCol)
+{
+    Piece p = Piece();
+    Piece p1 = board[origRow][origCol].getPiece();
+    Piece p2 = board[moveRow][moveCol].getPiece();
+
+    // Check to see if the tile has a enemy piece
+    if (p2.getPlayer() != 0)
+    {
+        if (p2.getPlayer() == 1)  
+        {
+            whitePieces.push_back(p2);
+            board[moveRow][moveCol].setPiece(p1);
+            board[origRow][origCol].setPiece(p);
+
+        }
+        else
+        {
+            blackPieces.push_back(p2);
+            board[moveRow][moveCol].setPiece(p1);
+            board[origRow][origCol].setPiece(p); 
+        }
+    }
+    else
+    {
+        board[moveRow][moveCol].setPiece(p1);
+        board[origRow][origCol].setPiece(p); 
+    }
 }
 
 ChessBoard::ChessBoard()
 {
     name = "Chess Board";
-    setMap();
     setPieces();
     initializeBoard();
 }
@@ -84,21 +65,23 @@ ChessBoard::ChessBoard()
 ChessBoard::ChessBoard(std::string name)
 {
     this->name = name;
-    setMap();
     setPieces();
     initializeBoard();
 }
 
+// Function to print the size of the array holding the pieces
 int ChessBoard::getPiecesSize()
 {
     return sizeof(pieces)/sizeof(pieces[0]);
 }
 
-int ChessBoard::getMapSize()
+// Function to acquire a specific tile on the board
+Tile ChessBoard::getTileOnBoard(int row, int col)
 {
-    return PieceMovements.size();
+    return board[row][col];
 }
 
+// Function to print the chess pieces, mainly for testing
 void ChessBoard::printPieces()
 {
     std::cout << std::endl << "Pieces" << std::endl;
@@ -109,26 +92,47 @@ void ChessBoard::printPieces()
     std::cout << std::endl;
 }
 
-void ChessBoard::printMap()
+// Function to return the point value of a given Chess piece (using common values)
+int ChessBoard::scoreTally(Movements num)
 {
-    std::cout << std::endl << "Map Values" << std::endl;
-    for(auto i : PieceMovements)
+    switch (num)
     {
-        std::cout << i.first << std::endl;
+        case 1:
+            return 1;
+            break;
+        case 3:
+            return 3;
+            break;
+        case 4:
+            return 3;
+            break;
+        case 2:
+            return 5;
+            break;
+        case 5:
+            return 9;
+            break;
+        default:
+            return 0;
+            break;
     }
-    std::cout << std::endl;
 }
 
+/////////////////////////////////////////////////////////////////////////
+
+// Function to set the board Name 
 void ChessBoard::setName(std::string name)
 {
     this->name = name;
 }
 
+// Function to get the chessboard's name
 std::string ChessBoard::getName()
 {
     return name;
 }
 
+// Initializes the board's pieces
 void ChessBoard::initializeBoard()
 {
     //Sets top black pieces
@@ -220,6 +224,7 @@ void ChessBoard::initializeBoard()
     board[7][7] = Tile(pieces[2], 'W');
 }
 
+// Function to print the piece symbols on the board
 void ChessBoard::printBoard()
 {
     std::cout << std::endl;
@@ -233,6 +238,7 @@ void ChessBoard::printBoard()
     }
 }
 
+// Function to print the color of the tiles
 void ChessBoard::printTiles()
 {
     std::cout << std::endl;
@@ -244,4 +250,157 @@ void ChessBoard::printTiles()
         }
         std::cout << std::endl;
     }
+}
+
+// Function to print player designation of the pieces
+void ChessBoard::printPlayer()
+{
+    std::cout << std::endl;
+    for(int i = 0; i < 8; i++)
+    {
+        for(int j = 0; j < 8; j++)
+        {
+            std::cout << board[i][j].getPiece().getPlayer() << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+// Function to print out the captured white pieces 
+void ChessBoard::printCapturedWhitePieces()
+{
+    int score = 0;
+
+    if (whitePieces.size() == 0)
+    {
+        std::cout << "No White pieces have been captured" << std::endl;
+    }
+    else
+    {
+        score = 0;
+        std::cout << "White Pieces Captured: ";
+        for (int i = 0; i < whitePieces.size(); i++)
+        {
+            score += scoreTally(whitePieces.at(i).getMovement());
+            std::cout << whitePieces.at(i).getSymbol() << " ";
+        }
+        std::cout << std::endl << "Current Black Player Score: " << score << std::endl;
+    }
+}
+
+// Function to print out the captured black pieces
+void ChessBoard::printCapturedBlackPieces()
+{
+    int score = 0;
+
+    if (blackPieces.size() == 0)
+    {
+        std::cout << "No Black pieces have been captured" << std::endl;
+    }
+    else
+    {
+        score = 0;
+        std::cout << "Black Pieces Captured: ";
+        for (int i = 0; i < blackPieces.size(); i++)
+        {
+            score += scoreTally(blackPieces.at(i).getMovement());
+            std::cout << blackPieces.at(i).getSymbol() << " ";
+        }
+        std::cout << std::endl << "Current White Player Score: " << score << std::endl;
+    }
+}
+
+// Return 2 if user needs to re-eneter information
+// Return 1 if move is complete and no repeat information is needed
+int ChessBoard::move(int turn, int origRow, int origCol, int moveRow, int moveCol)
+{
+    if (checkPositions(origRow, origCol, moveRow, moveCol) == 3)
+    {
+        std::cout << "Yoo are trying to access or move something outside of the board." << std::endl;
+        return 2;
+    }
+
+    Piece ogPiece = board[origRow][origCol].getPiece();
+    Piece nwPiece = board[moveRow][moveCol].getPiece();
+
+    char playerAnswer;
+
+    //DEBUG
+    //std::cout << *PieceMovements[3] << std::endl;
+    std::cout << "Piece Value: " << ogPiece.getMovement() << std::endl;
+    std::cout << "Player: " << ogPiece.getPlayer() << std::endl;
+
+    int checkMove = moveSelect(ogPiece.getMovement(), this, turn, origRow, origCol, moveRow, moveCol);
+
+    if (checkMove == 1)
+    {
+        std::cout << "Would you like to perform the movement (y/n): ";
+        std::cin >> playerAnswer;
+        std::cout << std::endl;
+
+        if (playerAnswer == 'y')
+        {
+            swapPieces(origRow, origCol, moveRow, moveCol);
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
+    }
+
+    if (checkMove == 2)
+    {
+        std::cout << "You are performing an illegal action with the selected piece, please select again." << std::endl;
+        return 2;
+    }
+
+    if (checkMove == 3)
+    {
+        std::cout << "You are not selecting an appropriate piece or a location to move, please select again." << std::endl;
+        return 2;
+    }
+
+    if (checkMove == 4)
+    {
+        std::cout << "Would you like to perform the movement (y/n): ";
+        std::cin >> playerAnswer;
+        std::cout << std::endl;
+
+        if (playerAnswer == 'y')
+        {
+            std::cout << "Pawn has reached end of the board." << std::endl;
+            swapPieces(origRow, origCol, moveRow, moveCol);
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
+    }
+}
+
+
+/////////////////////////////////////////////
+// TEST Functions
+/////////////////////////////////////////////
+
+void ChessBoard::testAddWhiteCapturedPiece(Piece p)
+{
+    whitePieces.push_back(p);
+}
+
+void ChessBoard::testAddBlackCapturedPiece(Piece p)
+{
+    blackPieces.push_back(p);
+}
+
+void ChessBoard::removePiece(int row, int col)
+{
+    board[row][col].setPiece(Piece());
+}
+
+void ChessBoard::addPiece(int row, int col, Piece p)
+{
+    board[row][col].setPiece(p);
 }

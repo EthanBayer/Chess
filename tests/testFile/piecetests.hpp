@@ -12,13 +12,13 @@ TEST (PieceTests, ConstrcutorTests)
     EXPECT_EQ (test->getName(), "Empty");
     EXPECT_EQ (test->getMovement(), None); 
 
-    test = new Piece('T', "Rook", Rook);
+    test = new Piece('T', "Rook", Rook, 0);
 
     EXPECT_EQ (test->getSymbol(), 'T');
     EXPECT_EQ (test->getName(), "Rook");
     EXPECT_EQ (test->getMovement(), Rook); 
 
-    test = new Piece('X', "Pawn", Pawn);
+    test = new Piece('X', "Pawn", Pawn, 0);
 
     EXPECT_EQ (test->getSymbol(), 'X');
     EXPECT_EQ (test->getName(), "Pawn");
@@ -104,6 +104,37 @@ TEST (PieceTests, MovementTests)
     EXPECT_EQ (test->getSymbol(), '0');
     EXPECT_EQ (test->getName(), "Empty");
     EXPECT_EQ (test->getMovement(), King);
+}
+
+TEST (PieceTests, PlayerTests)
+{
+    Piece* test = new Piece();
+
+    EXPECT_EQ (test->getSymbol(), '0');
+    EXPECT_EQ (test->getName(), "Empty");
+    EXPECT_EQ (test->getMovement(), None);
+    EXPECT_EQ (test->getPlayer(), 0);
+
+    test->setPlayer(1);
+
+    EXPECT_EQ (test->getSymbol(), '0');
+    EXPECT_EQ (test->getName(), "Empty");
+    EXPECT_EQ (test->getMovement(), None);
+    EXPECT_EQ (test->getPlayer(), 1);
+
+    test->setPlayer(2);
+
+    EXPECT_EQ (test->getSymbol(), '0');
+    EXPECT_EQ (test->getName(), "Empty");
+    EXPECT_EQ (test->getMovement(), None);
+    EXPECT_EQ (test->getPlayer(), 2);
+
+    test->setPlayer(3);
+
+    EXPECT_EQ (test->getSymbol(), '0');
+    EXPECT_EQ (test->getName(), "Empty");
+    EXPECT_EQ (test->getMovement(), None);
+    EXPECT_EQ (test->getPlayer(), 3);
 }
 
 #endif

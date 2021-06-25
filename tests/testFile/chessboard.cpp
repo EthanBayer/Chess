@@ -7,10 +7,10 @@ int main(void)
     ChessBoard test = ChessBoard();
 
     std::cout << "Pieces size: " << test.getPiecesSize() << std::endl;
-    std::cout << "Map Size: " << test.getMapSize() << std::endl;
+    //std::cout << "Map Size: " << test.getMapSize() << std::endl;
 
     test.printPieces();
-    test.printMap();
+    //test.printMap();
 
     test.setName("Test Board");
 
@@ -21,4 +21,12 @@ int main(void)
     std::cout << test.getName() << " Tiles: " << std::endl;
     test.printTiles();
     std::cout << std::endl;
+
+    std::cout << test.getName() << " Player denominations: " << std::endl;
+    test.printPlayer();
+    std::cout << std::endl;
+
+    std::cout << "Testing a move " << std::endl;
+    test.move(1, 7, 1, 4, 2);
+    test.printBoard();
 }
