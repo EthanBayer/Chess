@@ -316,7 +316,7 @@ int ChessBoard::move(int turn, int origRow, int origCol, int moveRow, int moveCo
 {
     if (checkPositions(origRow, origCol, moveRow, moveCol) == 3)
     {
-        std::cout << "Yoo are trying to access something outside of the board." << std::endl;
+        std::cout << "Yoo are trying to access or move something outside of the board." << std::endl;
         return 2;
     }
 
@@ -351,13 +351,13 @@ int ChessBoard::move(int turn, int origRow, int origCol, int moveRow, int moveCo
 
     if (checkMove == 2)
     {
-        std::cout << "You are trying to perform an invalid movement, please select again." << std::endl;
+        std::cout << "You are performing an illegal action with the selected piece, please select again." << std::endl;
         return 2;
     }
 
     if (checkMove == 3)
     {
-        std::cout << "You are not selecting an appropriate piece, please select again." << std::endl;
+        std::cout << "You are not selecting an appropriate piece or a location to move, please select again." << std::endl;
         return 2;
     }
 

@@ -338,7 +338,7 @@ static int movementRook(ChessBoard* cb, int turn, int origRow, int origCol, int 
         {
             for (int i = origCol + 1; i < newCol; i++)
             {
-                if (cb->getTileOnBoard(i, origCol).getPiece().getPlayer() != 0)
+                if (cb->getTileOnBoard(origRow, i).getPiece().getPlayer() != 0)
                 {
                     return 2;
                 }
@@ -350,7 +350,7 @@ static int movementRook(ChessBoard* cb, int turn, int origRow, int origCol, int 
         {
             for (int i = origCol - 1; i > newCol; i--)
             {
-                if (cb->getTileOnBoard(i, origCol).getPiece().getPlayer() != 0)
+                if (cb->getTileOnBoard(origRow, i).getPiece().getPlayer() != 0)
                 {
                     return 2;
                 }
