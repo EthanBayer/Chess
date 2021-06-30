@@ -462,6 +462,101 @@ static int movementKnight(ChessBoard* cb, int turn, int origRow, int origCol, in
     return 2;
 }
 
+//////////////////////////////////
+// Bishop
+int movementBishop(ChessBoard* cb, int turn, int origRow, int origCol, int newRow, int newCol)
+{
+    // Check to see if you are not selecting an empty space or an enemy piece
+    if (cb->getTileOnBoard(origRow, origCol).getPiece().getPlayer() != turn)
+    {
+        return 3;
+    }
+
+    // Check to see if you are not moving on a friendly Piece
+    if (cb->getTileOnBoard(newRow, newCol).getPiece().getPlayer() == turn)
+    {
+        return 3;
+    }
+
+    if (checkPositions(origRow, origCol, newRow, newCol) == 3)
+    {
+        return 3;
+    }
+
+    int tempRow = origRow;
+    int tempCol = origCol;
+
+    // Diagonal Right Down
+    if (origRow < newRow && origCol < newCol)
+    {
+        do
+        {
+            tempRow += 1;
+            tempCol += 1;
+
+            if (cb->getTileOnBoard(tempRow, tempCol).getPiece().getPlayer() != 0)
+            {
+                return 2;
+            }
+        }
+        while(tempRow < newRow && tempCol < newCol);
+
+        return 1;
+    }
+    // Diagonally Left Down
+    else if (origRow < newRow && origCol > newCol)
+    {
+        do
+        {
+            tempRow += 1;
+            tempCol -= 1;
+
+            if (cb->getTileOnBoard(tempRow, tempCol).getPiece().getPlayer() != 0)
+            {
+                return 2;
+            }
+        } while (tempRow < newRow && tempCol > newCol);
+        
+        return 1;
+    }
+    // Diagonally Right Up
+    else if (origRow > newRow && origCol < newCol)
+    {
+        do
+        {
+            tempRow -= 1;
+            tempCol += 1;
+
+            if (cb->getTileOnBoard(tempRow, tempCol).getPiece().getPlayer() != 0)
+            {
+                return 2;
+            }
+        } while (tempRow > newRow && tempCol < newCol);
+        
+        return 1;
+    }
+    // Diagonally Left Up
+    else if (origRow > newRow && origCol > newCol)
+    {
+        do
+        {
+            tempRow -= 1;
+            tempCol -= 1;
+
+            if (cb->getTileOnBoard(tempRow, tempCol).getPiece().getPlayer() != 0)
+            {
+                return 2;
+            }
+        } while (tempRow > newRow && tempCol > newCol);
+        
+        return 1;
+    }
+    else
+    {
+        return 2;
+    }
+}
+
 
 
 // INCOMPLETE
@@ -481,6 +576,10 @@ int moveSelect(Movements m, ChessBoard* cb, int turn, int origRow, int origCol, 
             break;
         case 3:
             use = movementKnight(cb, turn, origRow, origCol, newRow, newCol);
+            return use;
+            break;
+        case 4:
+            use = movementBishop(cb, turn, origRow, origCol, newRow, newCol);
             return use;
             break;
         default:
