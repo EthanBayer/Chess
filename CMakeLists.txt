@@ -43,6 +43,15 @@ ADD_EXECUTABLE( rookmovement_tests
     headers/functions.hpp
 )
 
+ADD_EXECUTABLE( bishopmovement_tests
+tests/testFile/moveTests/bishopMoveTests.cpp
+src/chessboard.cpp
+src/piece.cpp
+src/tile.cpp
+headers/chesspiecemovements.hpp
+headers/functions.hpp
+)
+
 ADD_EXECUTABLE( capturedpieces_tests
     tests/testFile/capturedpiecetests.cpp
     src/chessboard.cpp

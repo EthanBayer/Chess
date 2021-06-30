@@ -316,7 +316,7 @@ int ChessBoard::move(int turn, int origRow, int origCol, int moveRow, int moveCo
 {
     if (checkPositions(origRow, origCol, moveRow, moveCol) == 3)
     {
-        std::cout << "Yoo are trying to access or move something outside of the board." << std::endl;
+        std::cout << "You are trying to access or move something outside of the board." << std::endl;
         return 2;
     }
 

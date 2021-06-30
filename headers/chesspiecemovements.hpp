@@ -485,71 +485,156 @@ int movementBishop(ChessBoard* cb, int turn, int origRow, int origCol, int newRo
 
     int tempRow = origRow;
     int tempCol = origCol;
+    int diagonalMoveCheck = 0;
 
     // Diagonal Right Down
     if (origRow < newRow && origCol < newCol)
     {
-        do
+        // Check to see if a diagonal movement is being followed
+        while(tempRow < 8 && tempCol < 8)
         {
             tempRow += 1;
             tempCol += 1;
 
-            if (cb->getTileOnBoard(tempRow, tempCol).getPiece().getPlayer() != 0)
+            if (tempRow == newRow && tempCol == newCol)
             {
-                return 2;
+                diagonalMoveCheck = 1;
             }
         }
-        while(tempRow < newRow && tempCol < newCol);
 
-        return 1;
+        if (diagonalMoveCheck == 1)
+        {
+            tempRow = origRow;
+            tempCol = origCol;
+            do
+            {
+                tempRow += 1;
+                tempCol += 1;
+
+                if (cb->getTileOnBoard(tempRow, tempCol).getPiece().getPlayer() != 0)
+                {
+                    return 2;
+                }
+            }
+            while(tempRow < newRow && tempCol < newCol);
+
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
     }
     // Diagonally Left Down
     else if (origRow < newRow && origCol > newCol)
     {
-        do
+       // Check to see if a diagonal movement is being followed
+        while(tempRow < 8 && tempCol >= 0)
         {
             tempRow += 1;
             tempCol -= 1;
 
-            if (cb->getTileOnBoard(tempRow, tempCol).getPiece().getPlayer() != 0)
+            if (tempRow == newRow && tempCol == newCol)
             {
-                return 2;
+                diagonalMoveCheck = 1;
             }
-        } while (tempRow < newRow && tempCol > newCol);
+        }
+
+        if (diagonalMoveCheck == 1)
+        {
+            tempRow = origRow;
+            tempCol = origCol;
+            do
+            {
+                tempRow += 1;
+                tempCol -= 1;
+
+                if (cb->getTileOnBoard(tempRow, tempCol).getPiece().getPlayer() != 0)
+                {
+                 return 2;
+                }
+            } while (tempRow < newRow && tempCol > newCol);
         
-        return 1;
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
     }
     // Diagonally Right Up
     else if (origRow > newRow && origCol < newCol)
     {
-        do
+        // Check to see if a diagonal movement is being followed
+        while(tempRow >= 0 && tempCol < 8)
         {
             tempRow -= 1;
             tempCol += 1;
 
-            if (cb->getTileOnBoard(tempRow, tempCol).getPiece().getPlayer() != 0)
+            if (tempRow == newRow && tempCol == newCol)
             {
-                return 2;
+                diagonalMoveCheck = 1;
             }
-        } while (tempRow > newRow && tempCol < newCol);
+        }
+
+        if (diagonalMoveCheck == 1)
+        {
+            tempRow = origRow;
+            tempCol = origCol;
+            do
+            {
+                tempRow -= 1;
+                tempCol += 1;
+
+                if (cb->getTileOnBoard(tempRow, tempCol).getPiece().getPlayer() != 0)
+                {
+                    return 2;
+                }
+            } while (tempRow > newRow && tempCol < newCol);
         
-        return 1;
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
     }
     // Diagonally Left Up
     else if (origRow > newRow && origCol > newCol)
     {
-        do
+        // Check to see if a diagonal movement is being followed
+        while(tempRow >= 0 && tempCol >= 0)
         {
             tempRow -= 1;
             tempCol -= 1;
 
-            if (cb->getTileOnBoard(tempRow, tempCol).getPiece().getPlayer() != 0)
+            if (tempRow == newRow && tempCol == newCol)
             {
-                return 2;
+                diagonalMoveCheck = 1;
             }
-        } while (tempRow > newRow && tempCol > newCol);
+        }
+
+        if (diagonalMoveCheck == 1)
+        {
+            tempRow = origRow;
+            tempCol = origCol; 
+            do
+            {
+                tempRow -= 1;
+                tempCol -= 1;
+
+                if (cb->getTileOnBoard(tempRow, tempCol).getPiece().getPlayer() != 0)
+                {
+                    return 2;
+                }
+            } while (tempRow > newRow && tempCol > newCol);
         
-        return 1;
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
     }
     else
     {
